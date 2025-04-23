@@ -102,25 +102,36 @@
       <div class="bank">Bank Mandiri</div>
       <div class="name">a/n Pradita Aprilia Restiani</div>
       <div class="account-number" id="accountNumber" title="Click to copy">1660002757227</div>
-      <div id="copyMsg" style="display:none; color:var(--secondary); font-size:0.96rem; margin-top:0.5rem;">Copied!</div>
+      <div id="copyMsg" style="display:none; color:var(--secondary); font-size:0.96rem; margin-top:0.5rem; transition:opacity 0.4s; opacity:0;">Copied!</div>
     </div>
     <div class="footer">
       Thank you for your kind gift and blessings.
     </div>
   </div>
   <script>
-    const accountDiv = document.getElementById('accountNumber');
-    const copyMsg = document.getElementById('copyMsg');
-    accountDiv.addEventListener('click', async function() {
-      try {
-        await navigator.clipboard.writeText(accountDiv.textContent);
-        copyMsg.style.display = 'block';
-        setTimeout(() => { copyMsg.style.display = 'none'; }, 1400);
-      } catch (err) {
-        copyMsg.textContent = 'Failed to copy!';
-        copyMsg.style.display = 'block';
-        setTimeout(() => { copyMsg.style.display = 'none'; copyMsg.textContent = 'Copied!'; }, 1400);
-      }
+    window.addEventListener('DOMContentLoaded', function() {
+      const accountDiv = document.getElementById('accountNumber');
+      const copyMsg = document.getElementById('copyMsg');
+      accountDiv.addEventListener('click', async function() {
+        try {
+          await navigator.clipboard.writeText(accountDiv.textContent);
+          copyMsg.textContent = 'Copied!';
+          copyMsg.style.display = 'block';
+          copyMsg.style.opacity = 1;
+          setTimeout(() => {
+            copyMsg.style.opacity = 0;
+            setTimeout(() => { copyMsg.style.display = 'none'; }, 400);
+          }, 1200);
+        } catch (err) {
+          copyMsg.textContent = 'Failed to copy!';
+          copyMsg.style.display = 'block';
+          copyMsg.style.opacity = 1;
+          setTimeout(() => {
+            copyMsg.style.opacity = 0;
+            setTimeout(() => { copyMsg.style.display = 'none'; copyMsg.textContent = 'Copied!'; }, 400);
+          }, 1200);
+        }
+      });
     });
   </script>
 </body>
