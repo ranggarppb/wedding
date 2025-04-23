@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
   <title>Wedding Gift - RangDit</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -105,7 +106,7 @@
       font-weight: 700;
       letter-spacing: 2px;
       background: #fff8f8;
-      color: #800000;
+      color: #770101;
       border-radius: 8px;
       padding: 0.5rem 0.8rem;
       margin-top: 0.5rem;
@@ -113,6 +114,15 @@
       cursor: pointer;
       transition: box-shadow 0.2s, background 0.2s;
       box-shadow: 0 1px 4px rgba(128,0,0,0.10);
+    }
+    .copy-instruction {
+      font-size: 0.98rem;
+      color: #fff8f8;
+      margin-top: 0.3rem;
+      margin-bottom: 0.2rem;
+      opacity: 0.85;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
     }
     .account-number:hover {
       box-shadow: 0 2px 8px rgba(128,0,0,0.18);
@@ -173,7 +183,8 @@
     <div class="account-box">
       <div class="bank">Bank Mandiri</div>
       <div class="name">a/n Pradita Aprilia Restiani</div>
-      <div class="account-number" id="accountNumber" title="Click to copy">1660002757227</div>
+      <span class="account-number" id="accountNumber" title="Klik untuk menyalin nomor" translate="no" style="user-select: all;" aria-label="Nomor rekening">1660002757227</span>
+      <div class="copy-instruction">Klik untuk menyalin nomor</div>
     </div>
     <div class="wish-message">
       Having you here for our special day is your present to us. But if you'd like to give a gift to send on our way, a contribution to our wishing well will surely make our day.
