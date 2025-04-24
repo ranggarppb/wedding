@@ -190,7 +190,167 @@
       Having you here for our special day is your present to us. But if you'd like to give a gift to send on our way, a contribution to our wishing well will surely make our day.
     </div>
   </div>
-  <div class="popup-copied" id="popupCopied">Copied</div>
+
+  <!-- Hidden Setlist Component -->
+  <div id="setlistContainer" style="display:none; margin-top:2.5rem;">
+    <div class="setlist-title">🎶 Setlist Spesial 🎶</div>
+    <div class="setlist">
+      <div class="setlist-item">
+        <button class="collapsible">Check Yes, Juliet</button>
+        <div class="content"><div class="lyrics">
+          Check yes Juliet<br>
+          Are you with me?<br>
+          Rain is falling down on the sidewalk<br>
+          I won't go until you come outside<br>
+          Check yes Juliet<br>
+          Kill the limbo<br>
+          I'll keep tossing rocks at your window<br>
+          There's no turning back for us tonight<br>
+          Lace up your shoes<br>
+          Eh oh eh oh<br>
+          Here's how we do<br>
+          Run, baby, run<br>
+          Don't ever look back<br>
+          They'll tear us apart<br>
+          If you give them the chance<br>
+          Don't sell your heart<br>
+          Don't say we're not meant to be<br>
+          Run, baby, run<br>
+          Forever we'll be<br>
+          You and me<br>
+          I'll be waiting<br>
+          Wishing, wanting<br>
+          Yours for the taking<br>
+          Just sneak out<br>
+          And don't tell a soul goodbye<br>
+          Check yes Juliet<br>
+          Here's the countdown<br>
+          Three, two, one, now fall in my arms<br>
+          Now they can change the locks<br>
+          Don't let them change your mind<br>
+          Lace up your shoes<br>
+          Eh oh eh oh<br>
+          Here's how we do<br>
+          Run, baby, run<br>
+          Don't ever look back<br>
+          They'll tear us apart<br>
+          If you give them the chance<br>
+          Don't sell your heart<br>
+          Don't say we're not meant to be<br>
+          Run, baby, run<br>
+          Forever we'll be<br>
+          You and me<br>
+          We're flying through the night<br>
+          We're flying through the night<br>
+          Way up high<br>
+          The view from here is getting better with<br>
+          You by my side<br>
+          Run, baby, run<br>
+          Don't ever look back<br>
+          They'll tear us apart<br>
+          If you give them the chance<br>
+          Don't sell your heart<br>
+          Don't say we're not meant to be<br>
+          Run, baby, run<br>
+          Forever we'll be<br>
+          You and me<br>
+          Run, baby, run<br>
+          Don't ever look back<br>
+          They'll tear us apart<br>
+          If you give them the chance<br>
+          Don't sell your heart<br>
+          Don't say we're not meant to be<br>
+          Run, baby, run<br>
+          Forever we'll be<br>
+          You and me<br>
+          Run, baby, run<br>
+          Don't ever look back<br>
+          They'll tear us apart<br>
+          If you give them the chance<br>
+          Don't sell your heart<br>
+          Don't say we're not meant to be<br>
+          Run, baby, run<br>
+          Forever we'll be<br>
+          You and me<br>
+          You and me<br>
+          You and me<br>
+        </div></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible">Sugar, We're Going Down</button>
+        <div class="content"><div class="lyrics">[Lirik akan muncul di sini]</div></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible">Welcome to My Life</button>
+        <div class="content"><div class="lyrics">[Lirik akan muncul di sini]</div></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible">Dear Maria, Count Me In</button>
+        <div class="content"><div class="lyrics">[Lirik akan muncul di sini]</div></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible">Thanks fr th Mmrs</button>
+        <div class="content"><div class="lyrics">[Lirik akan muncul di sini]</div></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible">In Bloom</button>
+        <div class="content"><div class="lyrics">[Lirik akan muncul di sini]</div></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .setlist-title {
+      color: #fff;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .setlist {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .setlist-item {
+      margin-bottom: 0.7rem;
+    }
+    .collapsible {
+      background-color: #fff8f8;
+      color: #770101;
+      cursor: pointer;
+      padding: 0.7rem 1.2rem;
+      width: 100%;
+      border: none;
+      border-radius: 9px;
+      text-align: left;
+      outline: none;
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(119,1,1,0.08);
+    }
+    .collapsible:hover {
+      background-color: #ffeaea;
+    }
+    .content {
+      padding: 0 1.2rem;
+      display: none;
+      overflow: hidden;
+      background: rgba(255,255,255,0.10);
+      border-radius: 0 0 9px 9px;
+      margin-top: 0.2rem;
+    }
+    .lyrics {
+      color: #fff8f8;
+      font-size: 1rem;
+      font-family: 'Playfair Display', serif;
+      padding: 0.7rem 0 0.7rem 0;
+    }
+  </style>
+
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       const accountDiv = document.getElementById('accountNumber');
