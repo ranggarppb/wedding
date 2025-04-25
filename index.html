@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Wedding Gift - RangDit</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <!-- Google Fonts optimized -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <style>
     body {
       min-height: 100vh;
@@ -26,7 +31,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('https://images.unsplash.com/photo-1708200477810-c414aa94e93e?auto=format&fit=crop&w=1600&q=80') no-repeat center center;
+      background: url('https://images.unsplash.com/photo-1708200477810-c414aa94e93e?auto=format&fit=crop&w=800&q=60') no-repeat center center;
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -194,6 +199,10 @@
         font-size: 1.05rem;
       }
     }
+    .setlist-note {
+      text-align: center;
+      line-height: 1.3;
+    }
   </style>
 </head>
 <body>
@@ -209,8 +218,7 @@
       Having you here for our special day is your present to us. But if you'd like to give a gift to send on our way, a contribution to our wishing well will surely make our day.
     </div>
     <button id="seeSetlistBtn" class="see-setlist">Click here to see Setlist</button>
-    <p class="setlist-note" style="text-align: center; margin-bottom: 0.2rem;">not including special setlist from LP, BMTH, and MCR</p>
-    <p class="setlist-note" style="text-align: center; margin-top: 0;">(and other Pop music too)</p>
+    <p class="setlist-note">not including special setlist from LP, BMTH, and MCR<br>(and other Pop music too)</p>
   </div>
 
   <!-- Copied toast -->
@@ -364,7 +372,7 @@
     }
   </style>
 
-  <script>
+  <script defer>
     window.addEventListener('DOMContentLoaded', function() {
       const accountDiv = document.getElementById('accountNumber');
       const popup = document.getElementById('popupCopied');
@@ -402,11 +410,8 @@
         }
       });
 
-      // Collapsible logic with dynamic lyrics loading
+      // Collapsible logic with on-demand lyrics loading
       let lyricsMap = {};
-      fetch('lyrics.json')
-        .then(response => response.json())
-        .then(data => { lyricsMap = data; });
 
       document.querySelectorAll('.collapsible').forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -419,7 +424,21 @@
             // Only load if not already loaded
             if (!content.innerHTML.trim()) {
               const songKey = btn.getAttribute('data-song');
-              content.innerHTML = `<div class="lyrics">${lyricsMap[songKey] || 'Lyrics not found.'}</div>`;
+              if (lyricsMap[songKey]) {
+                content.innerHTML = `<div class="lyrics">${lyricsMap[songKey]}</div>`;
+              } else {
+                content.innerHTML = '<div class="lyrics loading">Loading lyrics...</div>';
+                // Fetch lyrics on demand
+                fetch('lyrics.json')
+                  .then(response => response.json())
+                  .then(data => {
+                    lyricsMap = {...lyricsMap, ...data};
+                    content.innerHTML = `<div class="lyrics">${lyricsMap[songKey] || 'Lyrics not found.'}</div>`;
+                  })
+                  .catch(() => {
+                    content.innerHTML = '<div class="lyrics error">Could not load lyrics.</div>';
+                  });
+              }
             }
           }
         });
