@@ -15,6 +15,7 @@
       background: #770101;
       color: #fff;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
@@ -44,6 +45,7 @@
       width: 100vw;
       max-width: 480px;
       padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+      margin: 20px auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -138,6 +140,23 @@
       line-height: 1.5;
       letter-spacing: 0.5px;
     }
+    .see-setlist {
+      margin-top: 1.8rem;
+      background: #fff8f8;
+      color: #770101;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem 1.4rem;
+      font-size: 1.05rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(119,1,1,0.12);
+      transition: background 0.2s;
+    }
+    .see-setlist:hover {
+      background: #ffeaea;
+    }
     .popup-copied {
       position: fixed;
       top: 30px;
@@ -189,13 +208,14 @@
     <div class="wish-message">
       Having you here for our special day is your present to us. But if you'd like to give a gift to send on our way, a contribution to our wishing well will surely make our day.
     </div>
+    <button id="seeSetlistBtn" class="see-setlist">Click here to see Special Setlist</button>
   </div>
 
   <!-- Copied toast -->
   <div id="popupCopied" class="popup-copied">Copied!</div>
 
   <!-- Hidden Setlist Component -->
-  <div id="setlistContainer" style="display:none; margin-top:2.5rem;">
+  <div id="setlistContainer" style="display:none; margin-top:2.5rem; width: 100%; max-width: 480px;">
     <div class="setlist-title">🎶 Special Setlist 🎶</div>
     <div class="setlist">
       <div class="setlist-item">
@@ -236,6 +256,7 @@
       letter-spacing: 1px;
     }
     .setlist {
+      width: 100%;
       max-width: 400px;
       margin: 0 auto;
     }
@@ -284,19 +305,8 @@
       // Show/hide setlist based on Jakarta time
       const setlistContainer = document.getElementById('setlistContainer');
       (function updateSetlistVisibility() {
-        const now = new Date();
-        const localOffsetMin = -now.getTimezoneOffset(); // minutes east of UTC
-        const jakartaOffsetMin = 420; // UTC+7 in minutes
-        const diffMin = jakartaOffsetMin - localOffsetMin;
-        const jakartaTime = new Date(now.getTime() + diffMin * 60 * 1000);
-
-        const afterSix = jakartaTime.getHours() >= 18;
-        const cutoff = new Date('2025-04-26T11:00:00Z'); // 26 Apr 2025 18:00 GMT+7 -> 11:00 UTC
-        if (afterSix || jakartaTime >= cutoff) {
-          setlistContainer.style.display = 'block';
-        } else {
-          setlistContainer.style.display = 'none';
-        }
+        // Always start with lyrics hidden regardless of time
+        setlistContainer.style.display = 'none';
       })();
       accountDiv.addEventListener('click', async function() {
         try {
@@ -310,6 +320,19 @@
             popup.classList.remove('show');
             popup.textContent = 'Copied';
           }, 1400);
+        }
+      });
+
+      // Toggle setlist visibility on button click
+      const seeBtn = document.getElementById('seeSetlistBtn');
+      seeBtn.addEventListener('click', function() {
+        const isVisible = setlistContainer.style.display === 'block';
+        if (!isVisible) {
+          setlistContainer.style.display = 'block';
+          seeBtn.textContent = 'Hide Special Setlist';
+        } else {
+          setlistContainer.style.display = 'none';
+          seeBtn.textContent = 'Click here to see Special Setlist';
         }
       });
 
