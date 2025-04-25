@@ -216,7 +216,7 @@
 
   <!-- Hidden Setlist Component -->
   <div id="setlistContainer" style="display:none; margin-top:2.5rem; width: 100%; max-width: 480px;">
-    <div class="setlist-title">🎶 Special Setlist 🎶</div>
+    <div class="setlist-title">🎶 Setlist 🎶</div>
     <div class="setlist">
       <div class="setlist-item">
         <button class="collapsible" data-song="check-yes-juliet">Check Yes, Juliet</button>
@@ -284,6 +284,26 @@
       </div>
       <div class="setlist-item">
         <button class="collapsible" data-song="thanks-fr-th-mmrs">Thanks fr th Mmrs</button>
+        <div class="content"></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible" data-song="only-one">Only One</button>
+        <div class="content"></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible" data-song="just-pretend">Just Pretend</button>
+        <div class="content"></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible" data-song="iris-goo-goo-dolls">Iris</button>
+        <div class="content"></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible" data-song="iris">Iris by Shvron</button>
+        <div class="content"></div>
+      </div>
+      <div class="setlist-item">
+        <button class="collapsible" data-song="with-me">With Me</button>
         <div class="content"></div>
       </div>
     </div>
@@ -373,10 +393,10 @@
         const isVisible = setlistContainer.style.display === 'block';
         if (!isVisible) {
           setlistContainer.style.display = 'block';
-          seeBtn.textContent = 'Hide Special Setlist';
+          seeBtn.textContent = 'Hide Setlist';
         } else {
           setlistContainer.style.display = 'none';
-          seeBtn.textContent = 'Click here to see Special Setlist';
+          seeBtn.textContent = 'Click here to see Setlist';
         }
       });
 
