@@ -191,6 +191,9 @@
     </div>
   </div>
 
+  <!-- Copied toast -->
+  <div id="popupCopied" class="popup-copied">Copied!</div>
+
   <!-- Hidden Setlist Component -->
   <div id="setlistContainer" style="display:none; margin-top:2.5rem;">
     <div class="setlist-title">🎶 Special Setlist 🎶</div>
@@ -278,6 +281,23 @@
     window.addEventListener('DOMContentLoaded', function() {
       const accountDiv = document.getElementById('accountNumber');
       const popup = document.getElementById('popupCopied');
+      // Show/hide setlist based on Jakarta time
+      const setlistContainer = document.getElementById('setlistContainer');
+      (function updateSetlistVisibility() {
+        const now = new Date();
+        const localOffsetMin = -now.getTimezoneOffset(); // minutes east of UTC
+        const jakartaOffsetMin = 420; // UTC+7 in minutes
+        const diffMin = jakartaOffsetMin - localOffsetMin;
+        const jakartaTime = new Date(now.getTime() + diffMin * 60 * 1000);
+
+        const afterSix = jakartaTime.getHours() >= 18;
+        const cutoff = new Date('2025-04-26T11:00:00Z'); // 26 Apr 2025 18:00 GMT+7 -> 11:00 UTC
+        if (afterSix || jakartaTime >= cutoff) {
+          setlistContainer.style.display = 'block';
+        } else {
+          setlistContainer.style.display = 'none';
+        }
+      })();
       accountDiv.addEventListener('click', async function() {
         try {
           await navigator.clipboard.writeText(accountDiv.textContent);
