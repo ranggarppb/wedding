@@ -217,8 +217,8 @@
     <div class="wish-message">
       Having you here for our special day is your present to us. But if you'd like to give a gift to send on our way, a contribution to our wishing well will surely make our day.
     </div>
-    <button id="seeSetlistBtn" class="see-setlist">Click here to see Setlist</button>
-    <p class="setlist-note">not including special setlist from LP, BMTH, and MCR<br>(and other Pop music too)</p>
+    <button id="seeSetlistBtn" class="see-setlist" style="display: none;">Click here to see Setlist</button>
+    <p class="setlist-note" style="display: none;">not including special setlist from LP, BMTH, and MCR<br>(and other Pop music too)</p>
   </div>
 
   <!-- Copied toast -->
@@ -378,10 +378,42 @@
       const popup = document.getElementById('popupCopied');
       // Show/hide setlist based on Jakarta time
       const setlistContainer = document.getElementById('setlistContainer');
-      (function updateSetlistVisibility() {
-        // Always start with lyrics hidden regardless of time
+      const seeSetlistBtn = document.getElementById('seeSetlistBtn');
+      const setlistNote = document.querySelector('.setlist-note');
+      
+      function checkTimeAndUpdateVisibility() {
+        // Target time: April 26, 2025, 6 PM Jakarta time (GMT+7)
+        const targetDate = new Date('2025-04-26T18:00:00+07:00');
+        
+        // Get current time in user's timezone
+        const currentDate = new Date();
+        
+        // For proper comparison, convert both to UTC milliseconds
+        const targetTime = targetDate.getTime();
+        const currentTime = currentDate.getTime();
+        
+        // For debugging - show times in console
+        console.log('Target time (6 PM Jakarta):', new Date(targetTime).toISOString());
+        console.log('Current time:', new Date(currentTime).toISOString());
+        
+        // Show the button and note only if current time is after target time
+        if (currentTime >= targetTime) {
+          seeSetlistBtn.style.display = 'block';
+          setlistNote.style.display = 'block';
+        } else {
+          seeSetlistBtn.style.display = 'none';
+          setlistNote.style.display = 'none';
+        }
+        
+        // Always start with setlist content hidden regardless of time
         setlistContainer.style.display = 'none';
-      })();
+      }
+      
+      // Check time initially
+      checkTimeAndUpdateVisibility();
+      
+      // Recheck every hour (though this is mostly relevant if the page stays open)
+      setInterval(checkTimeAndUpdateVisibility, 60 * 60 * 1000);
       accountDiv.addEventListener('click', async function() {
         try {
           await navigator.clipboard.writeText(accountDiv.textContent);
